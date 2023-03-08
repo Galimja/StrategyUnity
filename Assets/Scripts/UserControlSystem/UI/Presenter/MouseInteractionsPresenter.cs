@@ -12,6 +12,12 @@ namespace UserControlSystem
 
         private ISelectable _lastSelectable;
 
+        private void Awake()
+        {
+            _camera = Camera.main;
+            _eventSystem = EventSystem.current;
+        }
+
         private void Update()
         {
             if (_eventSystem.IsPointerOverGameObject())

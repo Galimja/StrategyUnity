@@ -39,18 +39,49 @@ namespace UserControlSystem
 
         private void onButtonClick(ICommandExecutor commandExecutor)
         {
-            var unitProducer = commandExecutor as
-            CommandExecutorBase<IProduceUnitCommand>;
+            var unitProducer = TypeOfCommand<IProduceUnitCommand>(commandExecutor);
             if (unitProducer != null)
             {
-                unitProducer.ExecuteSpecificCommand(_context.Inject(new ProduceUnitCommand()));
+                unitProducer.ExecuteSpecificCommand(_context.Inject(new ProduceUnitCommandHeir()));
                 return;
             }
+
+            var attackCommand = TypeOfCommand<IAttackCommand>(commandExecutor);
+            if (attackCommand != null)
+            {
+                attackCommand.ExecuteSpecificCommand(_context.Inject(new AttackCommand()));
+                return;
+            }
+
+            var moveCommand = TypeOfCommand<IMoveCommand>(commandExecutor);
+            if (moveCommand != null)
+            {
+                moveCommand.ExecuteSpecificCommand(_context.Inject(new MoveCommand()));
+                return;
+            }
+
+            var patrolCommand = TypeOfCommand<IPatrolCommand>(commandExecutor);
+            if (patrolCommand != null)
+            {
+                patrolCommand.ExecuteSpecificCommand(_context.Inject(new PatrolCommand()));
+                return;
+            }
+
+            var stopCommand = TypeOfCommand<IStopCommand>(commandExecutor);
+            if (stopCommand != null)
+            {
+                stopCommand.ExecuteSpecificCommand(_context.Inject(new StopCommand()));
+                return;
+            }
+
             throw new
             ApplicationException(@$"{nameof(CommandButtonsPresenter)}.{nameof(onButtonClick)}: 
 Unknown type of commands executor: { commandExecutor.GetType().FullName }!");
         }
 
-
+        private CommandExecutorBase<T> TypeOfCommand<T>(ICommandExecutor commandExecutor) where T : ICommand
+        {
+            return commandExecutor as CommandExecutorBase<T>;
+        }
     }
 }
