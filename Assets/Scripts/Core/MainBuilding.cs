@@ -3,9 +3,8 @@ using UnityEngine;
 
 namespace Core
 {
-    public class MainBuilding : MonoBehaviour, IUnitProducer, ISelectable
+    public class MainBuilding : CommandExecutorBase<IProduceUnitCommand> , ISelectable
     {
-        [SerializeField] private GameObject _unitPrefab;
         [SerializeField] private Transform _unitsParent;
         [SerializeField] private Outline _outline;
 
@@ -24,10 +23,11 @@ namespace Core
             _outline.enabled = false;
         }
 
-        public void ProduceUnit()
+        public override void ExecuteSpecificCommand(IProduceUnitCommand command)
         {
-            Instantiate(_unitPrefab, new Vector3(Random.Range(-10, 10), 0,
-                        Random.Range(-10, 10)), Quaternion.identity, _unitsParent);
+            Debug.Log("spawn unit");
+            Instantiate(command.UnitPrefab, new Vector3(Random.Range(-10, 10), 0,
+            Random.Range(-10, 10)), Quaternion.identity, _unitsParent);
         }
     }
 }
