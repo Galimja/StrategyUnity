@@ -6,7 +6,7 @@ namespace Core
     {
         public override void ExecuteSpecificCommand(IAttackCommand command)
         {
-            Debug.Log(gameObject.name + " attacks!");            
+            Debug.Log($"{name} is attacking {command.Target}!");
         }
     }
 }

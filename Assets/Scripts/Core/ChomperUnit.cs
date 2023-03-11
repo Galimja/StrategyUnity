@@ -2,9 +2,10 @@ using UnityEngine;
 
 namespace Core
 {
-    public class ChomperUnit : MonoBehaviour, ISelectable
+    public class ChomperUnit : MonoBehaviour, ISelectable, IAttackable
     {
         [SerializeField] private Outline _outline;
+        [SerializeField] private Transform _pivotPoint;
 
         [SerializeField] private float _maxHealth = 150;
         [SerializeField] private Sprite _icon;
@@ -14,6 +15,7 @@ namespace Core
         public float MaxHealth => _maxHealth;
         public Sprite Icon => _icon;
         public Outline Outline => _outline;
+        public Transform PivotPoint => _pivotPoint;
 
         private void Awake()
         {
@@ -21,9 +23,5 @@ namespace Core
             _outline.enabled = false;
         }
 
-        //public override void ExecuteSpecificCommand(ICommand command)
-        //{
-        //    Debug.Log("command " + nameof(command) + " activate");
-        //}
     }
 }

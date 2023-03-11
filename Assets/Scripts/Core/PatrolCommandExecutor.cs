@@ -6,7 +6,7 @@ namespace Core
     {
         public override void ExecuteSpecificCommand(IPatrolCommand command)
         {
-            Debug.Log(gameObject.name + " patrols");
+            Debug.Log($"{name} is patroling from {command.From} to {command.To}!");
         }
     }
 }

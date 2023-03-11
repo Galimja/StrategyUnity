@@ -6,7 +6,7 @@ namespace Core
     {
         public override void ExecuteSpecificCommand(IMoveCommand command)
         {
-            Debug.Log(gameObject.name + " moves");
+            Debug.Log($"{name} is moving to {command.Target}!");
         }
     }
 }

@@ -1150,7 +1150,7 @@ GameObject:
   - component: {fileID: 271393698}
   m_Layer: 0
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1817,6 +1817,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 527208961}
+  - component: {fileID: 527208962}
   - component: {fileID: 527208960}
   - component: {fileID: 527208959}
   - component: {fileID: 527208958}
@@ -1910,6 +1911,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &527208962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 527208957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57625a97717714e449ba22d97338e947, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _legacyContext: {fileID: 11400000, guid: e3c4a5e36000609499297fe59f90fb16, type: 2}
+  _vector3value: {fileID: 11400000, guid: 656b57c80f1fa9043913ce6f8051f75b, type: 2}
+  _selectableValue: {fileID: 11400000, guid: 9be1c7e82b280fd42b0324373815cc86, type: 2}
+  _attackableValue: {fileID: 11400000, guid: 788b877e3bb0e2b4f97729d122de2048, type: 2}
 --- !u!1001 &541064594
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2937,6 +2954,70 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &999117493
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 999117495}
+  - component: {fileID: 999117494}
+  m_Layer: 0
+  m_Name: SceneContext
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &999117494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999117493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89715ad69b973a14899afa2c6730b30b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scriptableObjectInstallers: []
+  _monoInstallers:
+  - {fileID: 527208962}
+  _installerPrefabs: []
+  _autoRun: 1
+  OnPreInstall:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPostInstall:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPreResolve:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPostResolve:
+    m_PersistentCalls:
+      m_Calls: []
+  _parentNewObjectsUnderSceneContext: 0
+  _contractNames: []
+  _parentContractNames: []
+--- !u!4 &999117495
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999117493}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.64157, y: 1.8875183, z: 3.2246473}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1035060840
 GameObject:
   m_ObjectHideFlags: 0
@@ -3361,13 +3442,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 114008799}
     m_Modifications:
+    - target: {fileID: 2062842200, guid: cbbcf6e267045b043ae0a5d0debc8280, type: 3}
+      propertyPath: _camera
+      value: 
+      objectReference: {fileID: 963194227}
+    - target: {fileID: 2062842200, guid: cbbcf6e267045b043ae0a5d0debc8280, type: 3}
+      propertyPath: _eventSystem
+      value: 
+      objectReference: {fileID: 988575865}
+    - target: {fileID: 2062842200, guid: cbbcf6e267045b043ae0a5d0debc8280, type: 3}
+      propertyPath: _groundTransform
+      value: 
+      objectReference: {fileID: 271393698}
     - target: {fileID: 3074657719725199962, guid: cbbcf6e267045b043ae0a5d0debc8280, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3074657719725199962, guid: cbbcf6e267045b043ae0a5d0debc8280, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.12
+      value: 5.39
       objectReference: {fileID: 0}
     - target: {fileID: 3074657719725199962, guid: cbbcf6e267045b043ae0a5d0debc8280, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3375,7 +3468,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3074657719725199962, guid: cbbcf6e267045b043ae0a5d0debc8280, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.16
+      value: 2.04
       objectReference: {fileID: 0}
     - target: {fileID: 3074657719725199962, guid: cbbcf6e267045b043ae0a5d0debc8280, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3508,7 +3601,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _selectable: {fileID: 11400000, guid: 9be1c7e82b280fd42b0324373815cc86, type: 2}
   _view: {fileID: 134876987}
-  _context: {fileID: 11400000, guid: e3c4a5e36000609499297fe59f90fb16, type: 2}
 --- !u!1 &1371730600
 GameObject:
   m_ObjectHideFlags: 0
@@ -3570,6 +3662,9 @@ MonoBehaviour:
   _camera: {fileID: 963194227}
   _selectedObject: {fileID: 11400000, guid: 9be1c7e82b280fd42b0324373815cc86, type: 2}
   _eventSystem: {fileID: 988575865}
+  _groundClicksRMB: {fileID: 11400000, guid: 656b57c80f1fa9043913ce6f8051f75b, type: 2}
+  _attackablesRMB: {fileID: 11400000, guid: 788b877e3bb0e2b4f97729d122de2048, type: 2}
+  _groundTransform: {fileID: 271393698}
 --- !u!1 &1374116762
 GameObject:
   m_ObjectHideFlags: 0
@@ -4171,6 +4266,10 @@ PrefabInstance:
       propertyPath: _icon
       value: 
       objectReference: {fileID: 21300000, guid: 89b00dccc7686f64a9675f6277b4dda9, type: 3}
+    - target: {fileID: 5163983459954926726, guid: 1ca3cfb26290fbe4e8316579f01640c5, type: 3}
+      propertyPath: _pivotPoint
+      value: 
+      objectReference: {fileID: 1687364225}
     - target: {fileID: 5163983459954926726, guid: 1ca3cfb26290fbe4e8316579f01640c5, type: 3}
       propertyPath: _unitsParent
       value: 

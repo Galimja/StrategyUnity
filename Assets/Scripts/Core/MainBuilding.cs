@@ -3,10 +3,11 @@ using UnityEngine;
 
 namespace Core
 {
-    public class MainBuilding : CommandExecutorBase<IProduceUnitCommand> , ISelectable
+    public class MainBuilding : CommandExecutorBase<IProduceUnitCommand> , ISelectable, IAttackable
     {
         [SerializeField] private Transform _unitsParent;
         [SerializeField] private Outline _outline;
+        [SerializeField] private Transform _pivotPoint; 
 
         [SerializeField] private float _maxHealth = 1000;
         [SerializeField] private Sprite _icon;
@@ -16,6 +17,7 @@ namespace Core
         public float MaxHealth => _maxHealth;
         public Sprite Icon => _icon;
         public Outline Outline => _outline;
+        public Transform PivotPoint => _pivotPoint;
 
         private void Awake()
         {

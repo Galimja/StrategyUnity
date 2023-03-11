@@ -61,6 +61,9 @@ MonoBehaviour:
   _camera: {fileID: 0}
   _selectedObject: {fileID: 11400000, guid: 9be1c7e82b280fd42b0324373815cc86, type: 2}
   _eventSystem: {fileID: 0}
+  _groundClicksRMB: {fileID: 11400000, guid: 656b57c80f1fa9043913ce6f8051f75b, type: 2}
+  _attackablesRMB: {fileID: 11400000, guid: 788b877e3bb0e2b4f97729d122de2048, type: 2}
+  _groundTransform: {fileID: 0}
 --- !u!1001 &3074657719725328600
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -159,6 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _outline: {fileID: 1494082180}
+  _pivotPoint: {fileID: 3074657719725199962}
   _maxHealth: 150
   _icon: {fileID: 21300000, guid: 4781d4e95bcc98c40a95b5961fb2cdcf, type: 3}
 --- !u!114 &1494082183
