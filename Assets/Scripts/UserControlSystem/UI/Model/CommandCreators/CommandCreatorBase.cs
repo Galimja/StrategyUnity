@@ -22,4 +22,5 @@ namespace UserControlSystem.UI.Model
         public virtual void ProcessCancel() { }
 
     }
+
 }

@@ -17,6 +17,11 @@ namespace UserControlSystem.UI.Model
             Container.Bind<SelectableValue>().FromInstance(_selectableValue);
             Container.Bind<AttackableValue>().FromInstance(_attackableValue);
 
+            Container.Bind<IAwaitable<IAttackable>>()
+            .FromInstance(_attackableValue);
+            Container.Bind<IAwaitable<Vector3>>()
+            .FromInstance(_vector3value);
+
             Container.Bind<CommandCreatorBase<IProduceUnitCommand>>()
             .To<ProduceUnitCommandCommandCreator>().AsTransient();
             Container.Bind<CommandCreatorBase<IAttackCommand>>()
