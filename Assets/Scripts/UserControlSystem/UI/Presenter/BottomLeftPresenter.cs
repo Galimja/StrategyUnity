@@ -5,6 +5,7 @@ using UserControlSystem.UI.Model;
 
 namespace UserControlSystem.UI.Presenter
 {
+
     public class BottomLeftPresenter : MonoBehaviour
     {
         [SerializeField] private Image _selectedImage;
