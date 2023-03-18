@@ -1,19 +1,22 @@
 using System.Linq;
+using UniRx;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UserControlSystem.UI.Model;
+using Zenject;
 
 namespace UserControlSystem.UI.Presenter
 {
     public class MouseInteractionsPresenter : MonoBehaviour
     {
         [SerializeField] private Camera _camera;
-        [SerializeField] private SelectableValue _selectedObject;
+        [SerializeField] private Transform _groundTransform;
         [SerializeField] private EventSystem _eventSystem;
 
         [SerializeField] private Vector3Value _groundClicksRMB;
         [SerializeField] private AttackableValue _attackablesRMB;
-        [SerializeField] private Transform _groundTransform;
+        [SerializeField] private SelectableValue _selectedObject;
+        
         
         private Plane _groundPlane;
 
@@ -29,56 +32,26 @@ namespace UserControlSystem.UI.Presenter
         private void Start()
         {
             _groundPlane = new Plane(_groundTransform.up, 0);
-        }
+            var leftClickRay = Observable.EveryUpdate().Where(_ => Input.GetMouseButtonUp(0))
+                .Where(_ => !_eventSystem.IsPointerOverGameObject())
+                .Select(_ => _camera.ScreenPointToRay(Input.mousePosition))
+                .Select(ray =>
+                {
+                    SetOutline(false);
+                    return Physics.RaycastAll(ray);
+                });
+            
+            
+            var rightClicRay = Observable.EveryUpdate().Where(_ => Input.GetMouseButtonUp(1))
+                .Where(_ => !_eventSystem.IsPointerOverGameObject())
+                .Select(_ => _camera.ScreenPointToRay(Input.mousePosition))
+                .Select(ray =>
+                {
+                    SetOutline(false);
+                    return (ray, Physics.RaycastAll(ray));
+                });
 
-        private void Update()
-        {
-
-            if (!Input.GetMouseButtonUp(0) && !Input.GetMouseButton(1))
-            {
-                return;
-            }
-            if (_eventSystem.IsPointerOverGameObject())
-            {
-                return;
-            }
-            //var ray = _camera.ScreenPointToRay(Input.mousePosition);
-            //if (Input.GetMouseButtonUp(0))
-            //{
-            //    SetOutline(false);
-            //    var hits = Physics.RaycastAll(ray);
-
-            //    if (hits.Length == 0)
-            //    {
-            //        return;
-            //    }
-
-            //    var selectable = hits
-            //    .Select(hit => hit.collider.GetComponentInParent<ISelectable>())
-            //    .Where(c => c != null)
-            //    .FirstOrDefault();
-
-            //    if (selectable != null)
-            //    {
-            //        _lastSelectable = selectable;
-            //        SetOutline(true);
-            //    }
-
-            //    _selectedObject.SetValue(selectable);
-            //}
-            //else
-            //{
-            //    if (_groundPlane.Raycast(ray, out var enter))
-            //    {
-            //        //Debug.Log(ray.origin + ray.direction * enter);
-            //        _groundClicksRMB.SetValue(ray.origin + ray.direction * enter);
-            //    }
-            //}
-
-            SetOutline(false);
-            var ray = _camera.ScreenPointToRay(Input.mousePosition);
-            var hits = Physics.RaycastAll(ray);
-            if (Input.GetMouseButtonUp(0))
+            leftClickRay.Subscribe(hits =>
             {
                 if (weHit<ISelectable>(hits, out var selectable))
                 {
@@ -89,8 +62,9 @@ namespace UserControlSystem.UI.Presenter
                     }
                     _selectedObject.SetValue(selectable);
                 }
-            }
-            else
+            });
+
+            rightClicRay.Subscribe((ray, hits) =>
             {
                 if (weHit<IAttackable>(hits, out var attackable))
                 {
@@ -100,9 +74,12 @@ namespace UserControlSystem.UI.Presenter
                 {
                     _groundClicksRMB.SetValue(ray.origin + ray.direction * enter);
                 }
-            }
+            });
+
 
         }
+
+
         private bool weHit<T>(RaycastHit[] hits, out T result) where T : class
         {
             result = default;

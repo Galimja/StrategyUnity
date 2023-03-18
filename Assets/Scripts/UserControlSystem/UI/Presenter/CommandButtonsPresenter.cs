@@ -3,14 +3,17 @@ using UnityEngine;
 using UserControlSystem.UI.Model;
 using UserControlSystem.UI.View;
 using Zenject;
+using System;
+using UniRx;
 
 namespace UserControlSystem.UI.Presenter
 {
 
     public class CommandButtonsPresenter : MonoBehaviour
     {
-        [SerializeField] private SelectableValue _selectable;
         [SerializeField] private CommandButtonsView _view;
+        
+        [Inject] private IObservable<ISelectable> _selectable;
         [Inject] private CommandButtonsModel _model;
 
         private ISelectable _currentSelectable;
@@ -21,8 +24,8 @@ namespace UserControlSystem.UI.Presenter
             _model.OnCommandSent += _view.UnblockAllInteractions;
             _model.OnCommandCancel += _view.UnblockAllInteractions;
             _model.OnCommandAccepted += _view.BlockInteractions;
-            _selectable.OnSelected += onSelected;
-            onSelected(_selectable.CurrentValue);
+
+            _selectable.Subscribe(onSelected);
         }
 
 

@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace UserControlSystem.UI.Model
 {
-    public abstract class GameObjectValue<T> : ScriptableObject, IAwaitable<T>
+    public abstract class ScriptableObjectValueBase<T> : ScriptableObject, IAwaitable<T>
     {
         public class NewValueNotifier<TAwaited> : AwaiterBase<TAwaited>
         {
-            private readonly GameObjectValue<TAwaited> _scriptableObjectValueBase;
+            private readonly ScriptableObjectValueBase<TAwaited> _scriptableObjectValueBase;
 
-            public NewValueNotifier(GameObjectValue<TAwaited> scriptableObjectValueBase)
+            public NewValueNotifier(ScriptableObjectValueBase<TAwaited> scriptableObjectValueBase)
             {
                 _scriptableObjectValueBase = scriptableObjectValueBase;
                 _scriptableObjectValueBase.OnSelected += onNewValue;
@@ -27,7 +27,7 @@ namespace UserControlSystem.UI.Model
         public T CurrentValue { get; private set; }
         public event Action<T> OnSelected;
 
-        public void SetValue(T value)
+        public virtual void SetValue(T value)
         {
             CurrentValue = value;
             OnSelected?.Invoke(value);

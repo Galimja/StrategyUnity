@@ -3799,7 +3799,6 @@ MonoBehaviour:
   _text: {fileID: 1997952116}
   _sliderBackground: {fileID: 713018148}
   _sliderFillImage: {fileID: 143766849}
-  _selectedValue: {fileID: 11400000, guid: 9be1c7e82b280fd42b0324373815cc86, type: 2}
 --- !u!1 &1220796119
 GameObject:
   m_ObjectHideFlags: 0
@@ -4150,7 +4149,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1e9bd1e7f0ce34fb45775193a2c336, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _selectable: {fileID: 11400000, guid: 9be1c7e82b280fd42b0324373815cc86, type: 2}
   _view: {fileID: 134876987}
 --- !u!1 &1331718712
 GameObject:
@@ -4333,11 +4331,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 963194227}
-  _selectedObject: {fileID: 11400000, guid: 9be1c7e82b280fd42b0324373815cc86, type: 2}
+  _groundTransform: {fileID: 271393698}
   _eventSystem: {fileID: 988575865}
   _groundClicksRMB: {fileID: 11400000, guid: 656b57c80f1fa9043913ce6f8051f75b, type: 2}
   _attackablesRMB: {fileID: 11400000, guid: 788b877e3bb0e2b4f97729d122de2048, type: 2}
-  _groundTransform: {fileID: 271393698}
+  _selectedObject: {fileID: 11400000, guid: 9be1c7e82b280fd42b0324373815cc86, type: 2}
 --- !u!1 &1374116762
 GameObject:
   m_ObjectHideFlags: 0

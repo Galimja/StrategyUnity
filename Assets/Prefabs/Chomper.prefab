@@ -2150,11 +2150,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 0}
-  _selectedObject: {fileID: 11400000, guid: 9be1c7e82b280fd42b0324373815cc86, type: 2}
+  _groundTransform: {fileID: 0}
   _eventSystem: {fileID: 0}
   _groundClicksRMB: {fileID: 11400000, guid: 656b57c80f1fa9043913ce6f8051f75b, type: 2}
   _attackablesRMB: {fileID: 11400000, guid: 788b877e3bb0e2b4f97729d122de2048, type: 2}
-  _groundTransform: {fileID: 0}
+  _selectedObject: {fileID: 11400000, guid: 9be1c7e82b280fd42b0324373815cc86, type: 2}
 --- !u!1 &2481085119463834845
 GameObject:
   m_ObjectHideFlags: 0
