@@ -19,6 +19,8 @@ namespace UserControlSystem.UI.Model
             Container.Bind<AttackableValue>().FromInstance(_attackableValue);
             Container.Bind<IObservable<ISelectable>>().FromInstance(_selectableValue);
 
+            
+
             Container.Bind<IAwaitable<IAttackable>>()
             .FromInstance(_attackableValue);
             Container.Bind<IAwaitable<Vector3>>()
@@ -35,7 +37,14 @@ namespace UserControlSystem.UI.Model
             Container.Bind<CommandCreatorBase<IStopCommand>>()
             .To<StopCommandCommandCreator>().AsTransient();
             Container.Bind<CommandButtonsModel>().AsTransient();
+
+            Container.Bind<BottomCenterModel>().AsSingle();
+
+            Container.Bind<float>().WithId("Chomper").FromInstance(5f);
+            Container.Bind<string>().WithId("Chomper").FromInstance("Chomper");
+
             
         }
+
     }
 }
