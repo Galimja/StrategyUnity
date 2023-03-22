@@ -1,12 +1,16 @@
-﻿using UniRx;
+﻿using System.Threading.Tasks;
+using UniRx;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using Zenject;
 
 namespace Core
 {
     public class ProduceUnitCommandExecutor : CommandExecutorBase<IProduceUnitCommand>, IUnitProducer
     {
         public IReadOnlyReactiveCollection<IUnitProductionTask> Queue => _queue;
+
+        [Inject] private DiContainer _diContainer;
 
         [SerializeField] private Transform _unitsParent;
         [SerializeField] private int _maximumUnitsInQueue = 6;
@@ -25,8 +29,19 @@ namespace Core
             if (innerTask.TimeLeft <= 0)
             {
                 removeTaskAtIndex(0);
-                Instantiate(innerTask.UnitPrefab, new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10)),
+
+                var instance = _diContainer.InstantiatePrefab(innerTask.UnitPrefab, transform.position,
                     Quaternion.identity, _unitsParent);
+                var queue = instance.GetComponent<ICommandsQueue>();
+                var mainBuilding = GetComponent<MainBuilding>();
+                queue.EnqueueCommand(new MoveCommand(mainBuilding.RallyPoint));
+
+
+                //_diContainer.InstantiatePrefab(innerTask.UnitPrefab, new Vector3(Random.Range(-10, 10), 0,
+                //  Random.Range(-10, 10)), Quaternion.identity, _unitsParent);
+
+                //Instantiate(innerTask.UnitPrefab, new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10)),
+                //  Quaternion.identity, _unitsParent);
             }
         }
 
@@ -41,7 +56,7 @@ namespace Core
             _queue.RemoveAt(_queue.Count - 1);
         }
 
-        public override void ExecuteSpecificCommand(IProduceUnitCommand command)
+        public override async Task ExecuteSpecificCommand(IProduceUnitCommand command)
         {
             _queue.Add(new UnitProductionTask(command.ProductionTime, 
                 command.Icon, command.UnitPrefab, command.UnitName));

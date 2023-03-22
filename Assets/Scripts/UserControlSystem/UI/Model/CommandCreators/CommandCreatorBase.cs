@@ -7,7 +7,7 @@ namespace UserControlSystem.UI.Model
         public ICommandExecutor ProcessCommandExecutor(ICommandExecutor
                                     commandExecutor, Action<T> callback)
         {
-            var classSpecificExecutor = commandExecutor as CommandExecutorBase<T>;
+            var classSpecificExecutor = commandExecutor as ICommandExecutor<T>;
             
             if (classSpecificExecutor != null)
             {

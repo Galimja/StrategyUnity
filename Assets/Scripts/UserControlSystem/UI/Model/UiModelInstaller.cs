@@ -36,6 +36,10 @@ namespace UserControlSystem.UI.Model
             .To<PatrolCommandCommandCreator>().AsTransient();
             Container.Bind<CommandCreatorBase<IStopCommand>>()
             .To<StopCommandCommandCreator>().AsTransient();
+            Container.Bind<CommandCreatorBase<ISetRallyPointCommand>>()
+            .To<SetRallyPointCommandCommandCreator>().AsTransient();
+
+
             Container.Bind<CommandButtonsModel>().AsTransient();
 
             Container.Bind<BottomCenterModel>().AsSingle();

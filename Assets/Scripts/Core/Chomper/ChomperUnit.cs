@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Core
 {
-    public class ChomperUnit : MonoBehaviour, ISelectable, IAttackable
+    public class ChomperUnit : MonoBehaviour, ISelectable, IAttackable, IUnit
     {
         [SerializeField] private Outline _outline;
         [SerializeField] private Transform _pivotPoint;

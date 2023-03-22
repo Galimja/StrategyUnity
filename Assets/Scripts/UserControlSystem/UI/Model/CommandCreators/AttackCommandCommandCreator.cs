@@ -5,4 +5,5 @@
         protected override IAttackCommand createCommand(IAttackable argument) => new AttackCommand(argument);
 
     }
+
 }
