@@ -32,16 +32,16 @@ namespace Core
 
                 var instance = _diContainer.InstantiatePrefab(innerTask.UnitPrefab, transform.position,
                     Quaternion.identity, _unitsParent);
+
+                var factionMember = instance.GetComponent<FactionMember>();
+                factionMember.SetFaction(GetComponent<FactionMember>().FactionId);
+
                 var queue = instance.GetComponent<ICommandsQueue>();
                 var mainBuilding = GetComponent<MainBuilding>();
                 queue.EnqueueCommand(new MoveCommand(mainBuilding.RallyPoint));
 
 
-                //_diContainer.InstantiatePrefab(innerTask.UnitPrefab, new Vector3(Random.Range(-10, 10), 0,
-                //  Random.Range(-10, 10)), Quaternion.identity, _unitsParent);
-
-                //Instantiate(innerTask.UnitPrefab, new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10)),
-                //  Quaternion.identity, _unitsParent);
+                
             }
         }
 

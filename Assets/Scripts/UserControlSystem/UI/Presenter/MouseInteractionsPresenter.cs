@@ -62,7 +62,7 @@ namespace UserControlSystem.UI.Presenter
                     }
                     _selectedObject.SetValue(selectable);
                 }
-            });
+            }).AddTo(this);
 
             rightClicRay.Subscribe((ray, hits) =>
             {
@@ -74,7 +74,7 @@ namespace UserControlSystem.UI.Presenter
                 {
                     _groundClicksRMB.SetValue(ray.origin + ray.direction * enter);
                 }
-            });
+            }).AddTo(this);
 
 
         }
@@ -96,6 +96,12 @@ namespace UserControlSystem.UI.Presenter
 
         private void SetOutline(bool isSelected)
         {
+            if (gameObject == null)
+            {
+                return;
+            }
+
+
             if (_lastSelectable != null) 
                 _lastSelectable.Outline.enabled = isSelected;
         }

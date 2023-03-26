@@ -29,6 +29,19 @@ namespace Core
             _outline.enabled = false;
         }
 
+        public void RecieveDamage(int amount)
+        {
+            if (_health <= 0)
+            {
+                return;
+            }
+            _health -= amount;
+            if (_health <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
+
         //public override async Task ExecuteSpecificCommand(IProduceUnitCommand command)
         //{
         //    Debug.Log("spawn unit");

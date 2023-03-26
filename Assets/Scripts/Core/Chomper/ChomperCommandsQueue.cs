@@ -56,6 +56,9 @@ namespace Core
         public void Clear()
         {
             _innerCollection.Clear();
+
+            if (this == null) return;
+            
             _stopCommandExecutor.ExecuteSpecificCommand(new StopCommand());
         }
 
