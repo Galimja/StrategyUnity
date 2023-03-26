@@ -18,10 +18,7 @@ namespace Core
             _animator.SetTrigger(Animator.StringToHash(AnimationTypes.Walk));
             _stopCommandExecutor.CancellationTokenSource = new CancellationTokenSource();
 
-            //if (gameObject == null)
-            //{
-            //    return;
-            //}
+            
 
             try
             {
