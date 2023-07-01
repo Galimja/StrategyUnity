@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Core
 {
+
     public class ChomperUnit : MonoBehaviour, ISelectable, IAttackable, IUnit, IDamageDealer
     {
         [SerializeField] private Outline _outline;
@@ -10,6 +11,8 @@ namespace Core
         [SerializeField] private float _maxHealth = 150;
         [SerializeField] private Sprite _icon;
         [SerializeField] private int _damage = 25;
+
+        [field: SerializeField] public UnitType UnitType { get; set;}
 
         private float _health = 150;
         public float Health => _health;
@@ -22,6 +25,7 @@ namespace Core
 
         private void Awake()
         {
+            _health = _maxHealth;
             _outline = gameObject.GetComponent<Outline>();
             _outline.enabled = false;
         }

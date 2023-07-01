@@ -15,6 +15,7 @@ namespace UserControlSystem.UI.View {
         [SerializeField] private GameObject _stopButton;
         [SerializeField] private GameObject _produceUnitButton;
         [SerializeField] private GameObject _setRyllyPointButton;
+        [SerializeField] private GameObject _teleportButton;
 
         private Dictionary<Type, GameObject> _buttonsByExecutorType;
 
@@ -33,6 +34,8 @@ namespace UserControlSystem.UI.View {
             .Add(typeof(ICommandExecutor<IProduceUnitCommand>), _produceUnitButton);
             _buttonsByExecutorType
             .Add(typeof(ICommandExecutor<ISetRallyPointCommand>), _setRyllyPointButton);
+            _buttonsByExecutorType
+            .Add(typeof(ICommandExecutor<ITeleportCommand>), _teleportButton);
         }
 
         public void BlockInteractions(ICommandExecutor ce)
@@ -50,6 +53,7 @@ namespace UserControlSystem.UI.View {
             _stopButton.GetComponent<Selectable>().interactable = value;
             _produceUnitButton.GetComponent<Selectable>().interactable = value;
             _setRyllyPointButton.GetComponent<Selectable>().interactable = value;
+            _teleportButton.GetComponent<Selectable>().interactable = value;
         }
 
 

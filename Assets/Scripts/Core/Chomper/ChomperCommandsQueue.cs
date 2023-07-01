@@ -4,12 +4,17 @@ using Zenject;
 
 namespace Core
 {
+
+
     public class ChomperCommandsQueue : MonoBehaviour, ICommandsQueue
     {
+        [SerializeField] private UnitType _unitType;
+
         [Inject] CommandExecutorBase<IMoveCommand> _moveCommandExecutor;
         [Inject] CommandExecutorBase<IPatrolCommand> _patrolCommandExecutor;
         [Inject] CommandExecutorBase<IAttackCommand> _attackCommandExecutor;
         [Inject] CommandExecutorBase<IStopCommand> _stopCommandExecutor;
+        [Inject] CommandExecutorBase<ITeleportCommand> _teleportCommandExecutor;
 
         private ReactiveCollection<ICommand> _innerCollection = new ReactiveCollection<ICommand>();
 
@@ -33,6 +38,11 @@ namespace Core
             await _patrolCommandExecutor.TryExecuteCommand(command);
             await _attackCommandExecutor.TryExecuteCommand(command);
             await _stopCommandExecutor.TryExecuteCommand(command);
+            if (_unitType == UnitType.TeleportableChomper)
+            {
+                await _teleportCommandExecutor.TryExecuteCommand(command);
+            }
+
             if (_innerCollection.Count > 0)
             {
                 _innerCollection.RemoveAt(0);

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
-public interface IMoveCommand : ICommand
+
+public interface ITeleportCommand : ICommand
 {
     public Vector3 Target { get; }
 }

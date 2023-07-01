@@ -1,26 +1,25 @@
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 namespace Core
 {
-    public class MainBuilding : MonoBehaviour, ISelectable, IAttackable
+    public class AttackBuilding : MonoBehaviour, ISelectable, IAttackable, IDamageDealer
     {
-        [SerializeField] private Transform _unitsParent;
         [SerializeField] private Outline _outline;
-        [SerializeField] private Transform _pivotPoint; 
+        [SerializeField] private Transform _pivotPoint;
 
         [SerializeField] private float _maxHealth = 1000;
         [SerializeField] private Sprite _icon;
-        
+
         private float _health = 1000;
+        private int _damage = 30;
         public float Health => _health;
         public float MaxHealth => _maxHealth;
         public Sprite Icon => _icon;
         public Outline Outline => _outline;
         public Transform PivotPoint => _pivotPoint;
+        public int Damage => _damage;
 
-        public Vector3 RallyPoint { get; set; }
 
         private void Awake()
         {
@@ -40,12 +39,5 @@ namespace Core
                 Destroy(gameObject);
             }
         }
-
-        //public override async Task ExecuteSpecificCommand(IProduceUnitCommand command)
-        //{
-        //    Debug.Log("spawn unit");
-        //    Instantiate(command.UnitPrefab, new Vector3(Random.Range(-10, 10), 0,
-        //    Random.Range(-10, 10)), Quaternion.identity, _unitsParent);
-        //}
     }
 }

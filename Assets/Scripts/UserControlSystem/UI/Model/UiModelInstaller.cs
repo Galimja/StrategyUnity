@@ -38,6 +38,8 @@ namespace UserControlSystem.UI.Model
             .To<StopCommandCommandCreator>().AsTransient();
             Container.Bind<CommandCreatorBase<ISetRallyPointCommand>>()
             .To<SetRallyPointCommandCommandCreator>().AsTransient();
+            Container.Bind<CommandCreatorBase<ITeleportCommand>>()
+            .To<TeleportCommandCommandCreator>().AsTransient();
 
 
             Container.Bind<CommandButtonsModel>().AsTransient();
@@ -46,8 +48,10 @@ namespace UserControlSystem.UI.Model
 
             Container.Bind<float>().WithId("Chomper").FromInstance(5f);
             Container.Bind<string>().WithId("Chomper").FromInstance("Chomper");
+            Container.Bind<float>().WithId("Chomper").FromInstance(5f);
+            Container.Bind<string>().WithId("Chomper").FromInstance("Chomper");
 
-            
+
         }
 
     }

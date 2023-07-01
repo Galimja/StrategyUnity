@@ -64,19 +64,22 @@ namespace UserControlSystem.UI.View
             }
             else
             {
-                _imageHolders[index].SetActive(true);
-                _images[index].sprite = task.Icon;
-
-                if (index == 0)
+                if (_imageHolders.Length > index)
                 {
-                    _productionProgressSlider.gameObject.SetActive(true);
-                    _currentUnitName.text = task.UnitName;
-                    _currentUnitName.enabled = true;
-                    _unitProductionTaskCt = Observable.EveryUpdate()
-                    .Subscribe(_ =>
+                    _imageHolders[index].SetActive(true);
+                    _images[index].sprite = task.Icon;
+
+                    if (index == 0)
                     {
-                        _productionProgressSlider.value = task.TimeLeft / task.ProductionTime;
-                    });
+                        _productionProgressSlider.gameObject.SetActive(true);
+                        _currentUnitName.text = task.UnitName;
+                        _currentUnitName.enabled = true;
+                        _unitProductionTaskCt = Observable.EveryUpdate()
+                        .Subscribe(_ =>
+                        {
+                            _productionProgressSlider.value = task.TimeLeft / task.ProductionTime;
+                        });
+                    }
                 }
             }
         }
